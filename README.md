@@ -7,3 +7,9 @@ Persistente Daten werden Lokal in einer oder mehreren CSV Datei/en gespeichert, 
 
 ## Nutzeroberfläche
 Die Nutzeroberfläche wird über einen Lokalen Vue.js Web-Server mithilfe von Vite gehostet, und ist im eigenem Browser über localhost aufrufbar.
+
+
+## Datenbankstruktur
+
+![Datenbankstruktur](https://github.com/AE12-Projekt-Gruppe-7/EvalPro/blob/main/docs/diagramms/Datenbank.drawio.svg)
+    
