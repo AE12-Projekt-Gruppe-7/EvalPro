@@ -8,7 +8,7 @@ public class BaseRepo
 
     public BaseRepo(string path)
     {
-        var sw = new StreamWriter(path);
+        var sw = new StreamWriter("../../../jsons/" + path);
         Writer = new JsonTextWriter(sw);
     }
 }

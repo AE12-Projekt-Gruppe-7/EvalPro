@@ -1,11 +1,13 @@
-﻿namespace EvalPro.Database.Repository;
+﻿using EvalPro.Database.Interfaces.Repository;
 
-public class ItemRepository
+namespace EvalPro.Database.Repository;
+
+public class ItemRepository : IItemRepository
 {
     private BaseRepo repo;
 
     public ItemRepository()
     {
-        repo = new BaseRepo("../../../jsons/items.json");
+        repo = new BaseRepo("items.json");
     }
 }
