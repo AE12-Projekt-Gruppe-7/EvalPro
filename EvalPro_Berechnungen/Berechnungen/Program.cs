@@ -30,7 +30,18 @@ namespace Berechnung
                 if (ap2schriftlich > notehigh)
                 {
                     Console.WriteLine("Note ist nicht im erlaubten bereich!");
-                    Thread.Sleep(1000);    
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.WriteLine("Gebe die Note der AP2 mündlich ein: ");
+                    string ap2m = Console.ReadLine();
+                    int ap2muendlich = Convert.ToInt32(ap2m);
+                    if (ap2muendlich > notehigh)
+                    {
+                        Console.WriteLine("Note ist nicht im erlabten bereich");
+                        Thread.Sleep(1000);
+                    }
                 }
             }
         }
