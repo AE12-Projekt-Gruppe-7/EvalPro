@@ -96,6 +96,38 @@ class IHKNotenschluessel
         elseif(punkte <=66 && >64){
             return note = 3.5;
         }
-        
+        elseif(punkte <=64 && >62){
+            return note = 3.6;
+        }
+        elseif(punkte == 62){
+            return note = 3.7;
+        }
+        elseif(punkte <=61 && >58){
+            return note = 3.8;
+        }
+        elseif(punkte <=58 & >57){
+            return note = 3.9;
+        }
+        elseif(punkte <=57 && >55){
+            return note = 4.0;
+        }
+        elseif(punkte == 515){
+            return note = 4.1;
+        }
+        elseif(punkte <= 54 && >52){
+            return note = 4.2;
+        }
+        elseif(punkte <= 52 && >50){
+            return note = 4.3;
+        }
+        elseif(punkte == 50){
+            return note = 4.4;
+        }
+        elseif(punkte <=49 && >47){
+            return note = 4.5;
+        }
+        elseif(punkte <=49 && >47){
+            return note = 4.6;
+        }
     }
 }
