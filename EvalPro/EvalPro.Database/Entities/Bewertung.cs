@@ -2,15 +2,15 @@
 
 public class Bewertung
 {
-    int Id { get; set; }
+    public int Id { get; set; }
     
-    string Gesammtkommentar { get; set; }
+    public int PrueflingId { get; set; }
     
-    IEnumerable<int> KriterienIds { get; set; }
+    public string Gesammtkommentar { get; set; }
     
-    bool istPraesi { get; set; }
+    public IEnumerable<int> KriterienIds { get; set; }
+    
+    public bool istPraesi { get; set; }
 
-    bool istDoku { get; set; }
-    
-    
+    public bool istDoku { get; set; }
 }

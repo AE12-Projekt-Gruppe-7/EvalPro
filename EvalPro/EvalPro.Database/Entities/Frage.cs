@@ -2,8 +2,14 @@
 
 public class Frage
 {
-    int Id {get; set;}
+    public int Id {get; set;}
     
-    string Frage {get; set;}
+    public string FrageInhalt {get; set;}
+    
+    public string Kommentar {get; set;}
+    
+    public int Punkte  {get; set;}
+
+    public int GespraechId { get; set; }
     
 }

@@ -2,13 +2,13 @@
 
 public class Kriterium
 {
-    int Id { get; set; }
+    public int Id { get; set; }
     
-    string Bezeichnung { get; set; }
+    public int BewertungId { get; set; }
     
-    int Punkte {get; set;}
+    public string Bezeichnung { get; set; }
     
-    double Wertung { get; set; }
+    public int Punkte {get; set;}
     
-    string Kommentar { get; set; }
+    public string Kommentar { get; set; }
 }

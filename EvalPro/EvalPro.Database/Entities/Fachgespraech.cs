@@ -2,9 +2,11 @@
 
 public class Fachgespraech
 {
-    int Id { get; set; }
+    public int Id { get; set; }
 
-    string Gesammtkommentar { get; set; }
+    public string Gesammtkommentar { get; set; }
     
-    IEnumerable<int> FragenIds { get; set; }
+    public IEnumerable<int> FragenIds { get; set; }
+    
+    public int PrueflingId { get; set; }
 }
