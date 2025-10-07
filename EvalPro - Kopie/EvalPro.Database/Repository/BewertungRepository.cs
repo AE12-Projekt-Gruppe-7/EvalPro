@@ -29,7 +29,7 @@ public class BewertungRepository : IBewertungRepository
         
         all[index] = bewertung;
         
-        _repo.Serializer.Serialize(_repo.Writer, all);
+        _repo.Serializer.Serialize(_repo.Writer, bewertung);
     }
 
     public void Override(IEnumerable<Bewertung> bewertungen)

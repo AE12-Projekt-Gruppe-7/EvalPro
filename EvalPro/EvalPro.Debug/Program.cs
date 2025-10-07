@@ -1,10 +1,17 @@
 ﻿using EvalPro.Database.Entities;
+using EvalPro.Database.Repository;
 using Newtonsoft.Json;
 
 namespace EvalPro.Debug;
 
-internal class Program
+internal static class Program
 {
+    class ListItem()
+    {
+        public int Id {get;set;}
+        public string Name {get;set;} = "";
+    }
+    
     private static List<ListItem> _items =
     [
         new()
@@ -32,41 +39,53 @@ internal class Program
         }
     ];
 
-    private static readonly DebugModel _model = new()
+    private static readonly DebugModel Model = new()
     {
         Id = 1,
         Name = "Item Name 1",
         ItemIds = [1,2,3,4]
     };
 
-    private static void Main(string[] args)
+    private static List<Kriterium> _kriteriums =
+    [
+        new()
+        {
+            Id = 1,
+            BewertungId = 2,
+            Bezeichnung = "Test 1",
+            Kommentar = "Kommentar1",
+            Punkte = 34,
+        },new(){
+        Id = 13563,
+        BewertungId = 2,
+        Bezeichnung = "Test 1",
+        Kommentar = "Kommentar1",
+        Punkte = 34,
+        },new(){
+        Id = 135783657,
+        BewertungId = 2357837,
+        Bezeichnung = "3578378 1",
+        Kommentar = "65784678877",
+        Punkte = 34,
+        },new(){
+        Id = 125432525,
+        BewertungId = 2,
+        Bezeichnung = "Test 1",
+        Kommentar = "Kommentar1",
+        Punkte = 34,
+        },new(){
+        Id = 7678854,
+        BewertungId = 2,
+        Bezeichnung = "3425 1",
+        Kommentar = "Kommentar1",
+        Punkte = 34,
+        }
+    ];
+    
+    private static KriteriumRepository _repo = new ();
+
+    private static void Main()
     {
-        Console.WriteLine(JsonConvert.SerializeObject(_model));
-        Console.WriteLine();
-
-        var settings = new JsonSerializerSettings();
-        settings.Formatting = Formatting.Indented;
-        var serializer = JsonSerializer.Create(settings);
-        
-        using (StreamWriter sw = new StreamWriter(@"../../../jsons/model.json"))
-        using (JsonWriter writer = new JsonTextWriter(sw))
-        {
-            serializer.Serialize(writer, _model);
-        }
-        
-        using (StreamWriter sw = new StreamWriter(@"../../../jsons/items.json"))
-        using (JsonWriter writer = new JsonTextWriter(sw))
-        {
-            serializer.Serialize(writer, _items);
-        }
-
-        IEnumerable<ListItem> deItems;
-        using (JsonReader reader = new JsonTextReader(new StreamReader(@"../../../jsons/items.json")))
-        {
-            deItems = serializer.Deserialize<List<ListItem>>(reader);
-        }
-
-        Console.WriteLine(deItems);
-
+        _repo.Main();
     }
 }

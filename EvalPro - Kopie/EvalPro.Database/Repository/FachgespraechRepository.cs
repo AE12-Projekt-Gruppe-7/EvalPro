@@ -29,7 +29,7 @@ public class FachgespraechRepository : IFachgespraechRepository
         
         all[index] = fachgespraech;
         
-        _repo.Serializer.Serialize(_repo.Writer, all);
+        _repo.Serializer.Serialize(_repo.Writer, fachgespraech);
     }
 
     public void Override(IEnumerable<Fachgespraech> fachgespraeche)

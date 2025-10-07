@@ -19,36 +19,26 @@ public class FrageRepository : IFrageRepository
 
     public IEnumerable<Frage> GetByGespraechId(int gespraechId)
     {
-        return (_repo.Serializer.Deserialize<List<Frage>>(_repo.Reader) ?? []).Where(x => x.GespraechId == gespraechId);
+        throw new NotImplementedException();
     }
 
     public void Add(Frage f)
     {
-        var all = GetAll().ToList();
-        
-        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
+        throw new NotImplementedException();
     }
 
     public void Update(Frage f)
     {
-        var all = GetAll().ToList();
-        var index = all.FindIndex(x => x.Id == f.Id);
-        
-        all[index] = f;
-        
-        _repo.Serializer.Serialize(_repo.Writer, all);
+        throw new NotImplementedException();
     }
 
     public void Delete(int id)
     {
-        var all = GetAll().ToList();
-        all.Remove(all.Find(x => x.Id == id)!);
-        
-        _repo.Serializer.Serialize(_repo.Writer, all);
+        throw new NotImplementedException();
     }
 
     public void Override(IEnumerable<Frage> fs)
     {
-        _repo.Serializer.Serialize(_repo.Writer, fs);
+        throw new NotImplementedException();
     }
 }

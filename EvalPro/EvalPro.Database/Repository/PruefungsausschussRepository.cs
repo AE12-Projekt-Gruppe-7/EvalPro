@@ -3,33 +3,28 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class FrageRepository : IFrageRepository
+public class PruefungsausschussRepository : IPruefungsausschussRepository
 {
-    private readonly BaseRepo _repo = new("frage.json");
-    
-    public IEnumerable<Frage> GetAll()
+    private readonly BaseRepo _repo = new("pruefungsausschuss.json");
+
+    public IEnumerable<Pruefungsausschuss> GetAll()
     {
-        return (_repo.Serializer.Deserialize<IEnumerable<Frage>>(_repo.Reader) ?? []).ToList();
+        return (_repo.Serializer.Deserialize<IEnumerable<Pruefungsausschuss>>(_repo.Reader) ?? []).ToList();
     }
 
-    public Frage? GetById(int id)
+    public Pruefungsausschuss? GetById(int id)
     {
-        return (_repo.Serializer.Deserialize<IEnumerable<Frage>>(_repo.Reader) ?? []).FirstOrDefault(x => x.Id == id);
+        return (_repo.Serializer.Deserialize<IEnumerable<Pruefungsausschuss>>(_repo.Reader) ?? []).FirstOrDefault(x => x.Id == id);
     }
 
-    public IEnumerable<Frage> GetByGespraechId(int gespraechId)
-    {
-        return (_repo.Serializer.Deserialize<List<Frage>>(_repo.Reader) ?? []).Where(x => x.GespraechId == gespraechId);
-    }
-
-    public void Add(Frage f)
+    public void Add(Pruefungsausschuss f)
     {
         var all = GetAll().ToList();
         
         _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
     }
 
-    public void Update(Frage f)
+    public void Update(Pruefungsausschuss f)
     {
         var all = GetAll().ToList();
         var index = all.FindIndex(x => x.Id == f.Id);
@@ -47,7 +42,7 @@ public class FrageRepository : IFrageRepository
         _repo.Serializer.Serialize(_repo.Writer, all);
     }
 
-    public void Override(IEnumerable<Frage> fs)
+    public void Override(IEnumerable<Pruefungsausschuss> fs)
     {
         _repo.Serializer.Serialize(_repo.Writer, fs);
     }
