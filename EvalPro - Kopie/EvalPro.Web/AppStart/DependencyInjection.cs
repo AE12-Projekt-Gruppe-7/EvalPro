@@ -9,9 +9,7 @@ static class DependencyInjection
     {
         services.AddSingleton<IBewertungRepository, BewertungRepository>();
         services.AddSingleton<IFachgespraechRepository, FachgespraechRepository>();
-        services.AddSingleton<IFrageRepository, FrageRepository>();
-        services.AddSingleton<IKriteriumRepository, KriteriumRepository>();
-        services.AddSingleton<IPrueflingRepository, PrueflingRepository>();
-        services.AddSingleton<IPruefungsausschussRepository,PruefungsausschussRepository>();
+        
+        
     }
 }

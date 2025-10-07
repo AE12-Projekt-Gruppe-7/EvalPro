@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalPro.Web", "EvalPro.Web\EvalPro.Web.csproj", "{DA956E2D-0CBF-4BE2-912D-0549045F1DB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalPro.Berechnungen", "EvalPro.Berechnungen\EvalPro.Berechnungen.csproj", "{3FBF825B-BB74-4C61-8EB8-217DB2479E28}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalPro.Database", "EvalPro.Database\EvalPro.Database.csproj", "{70E758DB-2731-43E7-B593-D10E46495980}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalPro.Debug", "EvalPro.Debug\EvalPro.Debug.csproj", "{9BD81FBE-6243-4116-B259-C270A18AC40B}"
@@ -18,10 +16,6 @@ Global
 		{DA956E2D-0CBF-4BE2-912D-0549045F1DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA956E2D-0CBF-4BE2-912D-0549045F1DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA956E2D-0CBF-4BE2-912D-0549045F1DB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FBF825B-BB74-4C61-8EB8-217DB2479E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FBF825B-BB74-4C61-8EB8-217DB2479E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FBF825B-BB74-4C61-8EB8-217DB2479E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FBF825B-BB74-4C61-8EB8-217DB2479E28}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70E758DB-2731-43E7-B593-D10E46495980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70E758DB-2731-43E7-B593-D10E46495980}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E758DB-2731-43E7-B593-D10E46495980}.Release|Any CPU.ActiveCfg = Release|Any CPU
