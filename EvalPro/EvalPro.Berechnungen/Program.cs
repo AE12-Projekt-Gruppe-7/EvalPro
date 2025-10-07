@@ -11,9 +11,13 @@ namespace Berechnung
 
             // Eingabe der Noten für die Prüfungsbereiche
             double praesentation = EingabeNote("Präsentation und Fachgespräch");
+            Console.WriteLine();
             double softwarePlanung = EingabeNote("Planen eines Softwareprodukts");
+            Console.WriteLine();
             double Programmierung = EingabeNote("Anwendungsentwicklung");
+            Console.WriteLine();
             double projektDoku = EingabeNote("Projektdokumentation");
+            Console.WriteLine();
 
             // Gewichtung gemäß IHK Bayern
             double projektarbeit = (projektDoku + praesentation) / 2;
@@ -33,12 +37,14 @@ namespace Berechnung
 
         static double EingabeNote(string bereich)
         {
-            double note;
+            int punkte;
             do
             {
-                Console.Write($"Note für {bereich} (1.0 - 6.0): ");
+                Console.Write($"Punktzahl für {bereich} (0 - 100): ");
             }
-            while (!double.TryParse(Console.ReadLine(), out note) || note < 1.0 || note > 6.0);
+            while (!int.TryParse(Console.ReadLine(), out punkte) || punkte < 0 || punkte > 100);
+            double note = EvalPro.Berechnungen.IHKNotenschluessel.BerechneNote(punkte);
+            Console.WriteLine($"Note für {punkte} Punkte: {note:F1}");
             return note;
         }
     }

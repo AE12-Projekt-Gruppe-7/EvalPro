@@ -1,133 +1,64 @@
 using System;
 
-class IHKNotenschluessel
+namespace EvalPro.Berechnungen
 {
-    static void Main()
+    public static class IHKNotenschluessel
     {
-        Console.WriteLine("Bitte geben Sie die erreichte Punktzahl ein (0–100):");
-        if (int.TryParse(Console.ReadLine(), out int punkte))
+        public static double BerechneNote(int punkte)
         {
-            string note = BerechneNote(punkte);
-            Console.WriteLine($"Die Note für {punkte} Punkte ist: {note}");
+            if (punkte == 100) return 1.0;
+            else if (punkte < 100 && punkte > 97) return 1.1;
+            else if (punkte <= 97 && punkte > 95) return 1.2;
+            else if (punkte <= 95 && punkte > 93) return 1.3;
+            else if (punkte <= 93 && punkte > 91) return 1.4;
+            else if (punkte == 91) return 1.5;
+            else if (punkte == 90) return 1.6;
+            else if (punkte == 89) return 1.7;
+            else if (punkte == 88) return 1.8;
+            else if (punkte == 87) return 1.9;
+            else if (punkte <= 85 && punkte > 84) return 2.0;
+            else if (punkte == 84) return 2.1;
+            else if (punkte == 83) return 2.2;
+            else if (punkte == 82) return 2.3;
+            else if (punkte == 81) return 2.4;
+            else if (punkte <= 80 && punkte > 78) return 2.5;
+            else if (punkte == 78) return 2.6;
+            else if (punkte == 77) return 2.7;
+            else if (punkte <= 76 && punkte > 74) return 2.8;
+            else if (punkte == 74) return 2.9;
+            else if (punkte <= 73 && punkte > 71) return 3.0;
+            else if (punkte == 71) return 3.1;
+            else if (punkte == 70) return 3.2;
+            else if (punkte <= 69 && punkte > 67) return 3.3;
+            else if (punkte == 67) return 3.4;
+            else if (punkte <= 66 && punkte > 64) return 3.5;
+            else if (punkte <= 64 && punkte > 62) return 3.6;
+            else if (punkte == 62) return 3.7;
+            else if (punkte <= 61 && punkte > 58) return 3.8;
+            else if (punkte <= 58 && punkte > 57) return 3.9;
+            else if (punkte <= 57 && punkte > 55) return 4.0;
+            else if (punkte == 55) return 4.1;
+            else if (punkte <= 54 && punkte > 52) return 4.2;
+            else if (punkte <= 52 && punkte > 50) return 4.3;
+            else if (punkte == 50) return 4.4;
+            else if (punkte <= 49 && punkte > 47) return 4.5;
+            else if (punkte <= 49 && punkte > 45) return 4.6;
+            else if (punkte <= 45 && punkte > 43) return 4.7;
+            else if (punkte <= 43 && punkte > 41) return 4.8;
+            else if (punkte <= 41 && punkte > 39) return 4.9;
+            else if (punkte <= 39 && punkte > 37) return 5.0;
+            else if (punkte <= 37 && punkte > 35) return 5.1;
+            else if (punkte <= 35 && punkte > 33) return 5.2;
+            else if (punkte <= 33 && punkte > 31) return 5.3;
+            else if (punkte <= 31 && punkte > 29) return 5.4;
+            else if (punkte <= 29 && punkte > 24) return 5.5;
+            else if (punkte <= 24 && punkte > 19) return 5.6;
+            else if (punkte <= 19 && punkte > 14) return 5.7;
+            else if (punkte <= 14 && punkte > 9) return 5.8;
+            else if (punkte <= 9 && punkte > 4) return 5.9;
+            else if (punkte <= 4 && punkte >= 0) return 6.0;
+            else return -1; // Ungültige Punktzahl
         }
-        else
-        {
-            Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine ganze Zahl ein.");
-        }
-    }
-
-    static string BerechneNote(int punkte)
-    {
-        if (punkte == 100){
-            return note = 1.0;
-        }
-        elseif(punkte <100 && >97){
-            return note = 1.1;
-        }
-        elseif(punkte <=97 && >95){
-            return note = 1.2;
-        }
-        elseif(punkte <= && >93){
-            return note = 1.3;
-        }
-        elseif(punkte <=93 && >91){
-            return note = 1.4;
-        }
-        elseif(punkte == 91){
-            return note = 1.5;
-        }
-        elseif(punkte == 90){
-            return note = 1.6;
-        }
-        elseif(punkte == 89){
-            return note = 1.7;
-        }
-        elseif(punkte == 88){
-            return note = 1.8;
-        }
-        elseif(punkte == 87){
-            return note = 1.9;
-        }
-        elseif(punkte <= 85 && >84){
-            return note = 2.0;
-        }
-        elseif(punkte == 84){
-            return note = 2.1;
-        }
-        elseif(punkte == 83){
-            return note = 2.2;
-        }
-        elseif(punkte == 82){
-            return note = 2.3;
-        }
-        elseif(punkte == 81){
-            return note = 2.4;
-        }
-        elseif(punkte <= 80 && >78){
-            return note = 2.5;
-        }
-        elseif(punkte == 78){
-            return note = 2.6;
-        }
-        elseif(punkte == 77){
-            return note = 2.7;
-        }
-        elseif(punkte <= 76 && >74){
-            return note = 2.8;
-        }
-        elseif(punkte == 74){
-            return note = 2.9;
-        }
-        elseif(punkte <= 73 && >71){
-            return note = 3.0;
-        }
-        elseif(punkte == 71){
-            return note = 3.1;
-        }
-        elseif(punkte == 70){
-            return note = 3.2;
-        }
-        elseif(punkte <=69 && >67){
-            return note = 3.3;
-        }
-        elseif(punkte == 67){
-            return note = 3.4;
-        }
-        elseif(punkte <=66 && >64){
-            return note = 3.5;
-        }
-        elseif(punkte <=64 && >62){
-            return note = 3.6;
-        }
-        elseif(punkte == 62){
-            return note = 3.7;
-        }
-        elseif(punkte <=61 && >58){
-            return note = 3.8;
-        }
-        elseif(punkte <=58 & >57){
-            return note = 3.9;
-        }
-        elseif(punkte <=57 && >55){
-            return note = 4.0;
-        }
-        elseif(punkte == 515){
-            return note = 4.1;
-        }
-        elseif(punkte <= 54 && >52){
-            return note = 4.2;
-        }
-        elseif(punkte <= 52 && >50){
-            return note = 4.3;
-        }
-        elseif(punkte == 50){
-            return note = 4.4;
-        }
-        elseif(punkte <=49 && >47){
-            return note = 4.5;
-        }
-        elseif(punkte <=49 && >47){
-            return note = 4.6;
-        }
+        
     }
 }
