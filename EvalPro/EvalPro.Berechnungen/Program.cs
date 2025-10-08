@@ -1,4 +1,6 @@
 ﻿using System;
+using EvalPro.Database.Repository;
+using EvalPro.Database.Entities;
 
 namespace Berechnung
 {
@@ -9,14 +11,22 @@ namespace Berechnung
         {
             Console.WriteLine("Bewertung der Abschlussprüfung für Fachinformatiker Anwendungsentwicklung\n");
 
-            // Eingabe der Noten für die Prüfungsbereiche
-            double praesentation = EingabeNote("Präsentation und Fachgespräch");
+            // Beispiel: PrueflingId = 1 (anpassen je nach gewünschtem Prüfling)
+            int prueflingId = 1;
+            var bewertungRepo = new BewertungRepository();
+            var kriteriumRepo = new KriteriumRepository();
+
+            // Hole alle Bewertungen für den Prüfling
+            var bewertungen = bewertungRepo.GetByPrueflingId(prueflingId).ToList();
+
+            // Hole die Punkte für die einzelnen Kategorien
+            double praesentation = GetLeistungspunkte(bewertungen, kriteriumRepo, true, false);
             Console.WriteLine();
-            double softwarePlanung = EingabeNote("Planen eines Softwareprodukts");
+            double projektDoku = GetLeistungspunkte(bewertungen, kriteriumRepo, false, true);
             Console.WriteLine();
-            double Programmierung = EingabeNote("Anwendungsentwicklung");
+            double softwarePlanung = GetLeistungspunkte(bewertungen, kriteriumRepo, false, false, "Planen eines Softwareprodukts");
             Console.WriteLine();
-            double projektDoku = EingabeNote("Projektdokumentation");
+            double Programmierung = GetLeistungspunkte(bewertungen, kriteriumRepo, false, false, "Anwendungsentwicklung");
             Console.WriteLine();
 
             // Gewichtung gemäß IHK Bayern
@@ -35,14 +45,21 @@ namespace Berechnung
             Thread.Sleep(3000);
         }
 
-        static double EingabeNote(string bereich)
+        static double GetLeistungspunkte(List<Bewertung> bewertungen, KriteriumRepository kriteriumRepo, bool istPraesi, bool istDoku, string bezeichnung = null)
         {
-            int punkte;
-            do
+            // Finde die Bewertung für die Kategorie
+            var bewertung = bewertungen.FirstOrDefault(b => b.istPraesi == istPraesi && b.istDoku == istDoku);
+            if (bewertung == null) return 0;
+            var punkte = 0;
+            foreach (var kriteriumId in bewertung.KriterienIds)
             {
-                Console.Write($"Punktzahl für {bereich} (0 - 100): ");
+                var kriterium = kriteriumRepo.Repo.Serializer.Deserialize<List<Kriterium>>(kriteriumRepo.Repo.Reader)?.FirstOrDefault(k => k.Id == kriteriumId);
+                if (kriterium != null)
+                {
+                    if (bezeichnung == null || kriterium.Bezeichnung == bezeichnung)
+                        punkte += kriterium.Punkte;
+                }
             }
-            while (!int.TryParse(Console.ReadLine(), out punkte) || punkte < 0 || punkte > 100);
             double note = EvalPro.Berechnungen.IHKNotenschluessel.BerechneNote(punkte);
             Console.WriteLine($"Note für {punkte} Punkte: {note:F1}");
             return note;
