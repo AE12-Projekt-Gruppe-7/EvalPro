@@ -3,13 +3,14 @@ import { ref, onMounted } from 'vue'
 
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
+import Dialog from 'primevue/dialog'
 import ColumnGroup from 'primevue/columngroup'
 import Row from 'primevue/row'
 
 import Button from 'primevue/button'
 
 onMounted(() => {
-  products.value = [
+  students.value = [
     //Schüler für die Liste
     { id: '1', name: 'Paul', last_name: 'Zindler', work: 'x-plizit' },
     { id: '3', name: 'Paul', last_name: 'Zindler', work: 'x-plizit' },
@@ -29,11 +30,24 @@ onMounted(() => {
   ]
 })
 
-const products = ref()
-const selectedProduct = ref()
+const students = ref()
+const selectedStudents = ref()
+
+const create_visible = ref(false)
 
 function editStudent(id: any) {
   console.log('test')
+}
+
+function deleteStudent() {
+  this.selectedStudents.forEach((value, index) => {
+      this.students = this.students.filter(item => item.id !== value.id)
+    
+  })
+}
+
+function deselectRows() {
+  this.selectedStudents = [];
 }
 
 const visible = ref(false)
@@ -59,17 +73,26 @@ const visible = ref(false)
       icon="pi pi-trash"
       label="Ausgewählte löschen"
       style="background-color: red; border-color: red"
-      disabled
+      @click="deleteStudent()"
+      :disabled="!selectedStudents || selectedStudents.length === 0"
     />
 
     <Button
       icon="pi pi-ban"
       label="Auswahl zurücksetzen"
       style="background-color: darkblue; border-color: darkblue"
-      disabled
+      :disabled="!selectedStudents || selectedStudents.length === 0"
+      @click="deselectRows()"
     />
 
-    <Button icon="pi pi-plus" label="Neuer Eintrag" />
+    <Button icon="pi pi-plus" label="Neuer Eintrag" @click="create_visible = true" />
+    <Dialog v-model:visible="create_visible" modal header="Edit Profile" :style="{ width: '25rem' }">
+            
+            <div class="flex justify-end gap-2">
+                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+                <Button type="button" label="Save" @click="visible = false"></Button>
+            </div>
+        </Dialog>
   </div>
 
   <div class="main-card">
@@ -77,8 +100,8 @@ const visible = ref(false)
       <!-- Schülerliste -->
       <DataTable
         class="table"
-        v-model:selection="selectedProduct"
-        :value="products"
+        v-model:selection="selectedStudents"
+        :value="students"
         selectionMode="multiple"
         dataKey="id"
         :metaKeySelection="false"
@@ -91,7 +114,7 @@ const visible = ref(false)
         <Column field="work" header="Ausbildungsbetrieb"></Column>
         <Column style="width: 5%">
           <template #body="slotProps">
-            <Button icon="pi pi-pencil" @click="editStudent(slotProps.data.id)" />
+            <Button icon="pi pi-pencil" style="color: white" @click="editStudent(slotProps.data.id)" />
           </template>
         </Column>
         <Column style="width: 10%">
@@ -99,14 +122,15 @@ const visible = ref(false)
             <Button
               icon="pi pi-trash"
               @click="deleteStudent(slotProps.data.id)"
-              style="background-color: red; border-color: red"
+              style="background-color: red; border-color: red; color: white"
             />
           </template>
         </Column>
       </DataTable>
-      <Toast />
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

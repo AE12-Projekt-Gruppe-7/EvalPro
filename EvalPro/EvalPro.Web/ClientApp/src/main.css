@@ -1,6 +1,17 @@
 @import 'primeicons/primeicons.css';
 @import 'primeflex/primeflex.css';
 
+
+.p-datatable .p-datatable-tbody > tr.p-highlight > td,
+.p-datatable .p-datatable-tbody > tr[data-p-selected="true"] > td,
+.p-datatable .p-datatable-scrollable-body table > tbody > tr.p-highlight > td,
+.p-datatable .p-datatable-scrollable-body table > tbody > tr[data-p-selected="true"] > td {
+  background-image: none !important;
+  background-color: #363636 !important; /* your selected color */
+  color: #ffffff !important;
+  border-color: #2e2e2e !important;
+}
+
 body {
   font-family:
     system-ui,
@@ -14,6 +25,7 @@ body {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
+  background-color: white;
 }
 
 .header {
@@ -40,6 +52,7 @@ body {
 
 .button-row button {
   width: 25%;
+  color: white;
 }
 
 .button-row button:last-child {
@@ -57,4 +70,19 @@ body {
 .table {
   margin-top: 2rem;
   width: full;
+  
 }
+
+.table .p-datatable-thead > tr > th,
+.table .p-datatable-tbody > tr > td {
+    border-color: lightgray;
+
+}
+
+.table .p-datatable-tbody > tr,
+.table .p-datatable-thead > tr > th {
+  background-color: white;
+  color: black;
+}
+
+
