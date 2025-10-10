@@ -12,7 +12,7 @@ public class BaseRepo
 
     public BaseRepo(string path)
     {
-        str = new FileStream("../../../jsons/" + path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+        str = new FileStream("./jsons/" + path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
         var sw = new StreamWriter(str);
         sw.AutoFlush = true;
         Writer = new JsonTextWriter(sw);

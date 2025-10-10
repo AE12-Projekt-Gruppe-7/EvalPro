@@ -6,6 +6,8 @@ namespace EvalPro.Database.Repository;
 public class KriteriumRepository : IKriteriumRepository
 {
     public readonly BaseRepo Repo = new("kriterium.json");
+    
+  
 
     public void Main()
     {
