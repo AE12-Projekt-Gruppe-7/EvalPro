@@ -9,6 +9,7 @@ namespace Berechnung
 
         static void Main()
         {
+            System.IO.Directory.CreateDirectory("jsons"); // Sicherstellen, dass das Verzeichnis existiert;
             Console.WriteLine("Bewertung der Abschlussprüfung für Fachinformatiker Anwendungsentwicklung\n");
 
             // Beispiel: PrueflingId = 1 (anpassen je nach gewünschtem Prüfling)
