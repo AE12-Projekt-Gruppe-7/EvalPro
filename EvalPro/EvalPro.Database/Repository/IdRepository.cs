@@ -20,9 +20,8 @@ public class IdRepository : IIdRepository
         return 0;
     }
 
-    private bool rebuildIdCounter()
+    private bool RebuildIdCounter()
     {
-        
         return true;
     }
 }

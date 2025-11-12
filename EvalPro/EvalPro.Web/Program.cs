@@ -1,7 +1,13 @@
 //Database Tracked Id Provider
 
 using EvalPro.Web.AppStart;
+using Serilog;
+using Serilog.Core;
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug().WriteTo.Console().CreateLogger();
+var logger = Log.Logger;
 
+logger.Debug("Starting web host");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+logger.Debug("Services Registered");
 DependencyInjection.RegisterDependencies(builder.Services);
 
 var app = builder.Build();
@@ -22,29 +29,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
+logger.Debug("Running App");
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
