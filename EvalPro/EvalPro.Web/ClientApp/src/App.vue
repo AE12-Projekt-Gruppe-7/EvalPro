@@ -6,6 +6,7 @@ import Column from 'primevue/column'
 import Dialog from 'primevue/dialog'
 import ColumnGroup from 'primevue/columngroup'
 import Row from 'primevue/row'
+import Menu from 'primevue/menu';
 
 import Button from 'primevue/button'
 
@@ -29,6 +30,39 @@ onMounted(() => {
     { id: '16', name: 'Paul', last_name: 'Zindler', work: 'x-plizit' },
   ]
 })
+
+const items = ref([
+    {
+        label: 'Prüfungsauschuss',
+        items: [
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+            {
+                label: 'Test',
+                icon: 'pi pi-clock'
+            },
+        ]
+    },
+    
+]);
 
 const students = ref()
 const selectedStudents = ref()
@@ -64,7 +98,7 @@ const visible = ref(false)
       height="100"
     />
 
-    <h1 class="header-text">EvalPro Tool</h1>
+    <h1 class="header-text">EvalPro</h1>
   </div>
 
   <div class="button-row">
@@ -72,7 +106,7 @@ const visible = ref(false)
     <Button
       icon="pi pi-trash"
       label="Ausgewählte löschen"
-      style="background-color: red; border-color: red"
+      style="background-color: #e30013; border-color: #e30013"
       @click="deleteStudent()"
       :disabled="!selectedStudents || selectedStudents.length === 0"
     />
@@ -80,14 +114,15 @@ const visible = ref(false)
     <Button
       icon="pi pi-ban"
       label="Auswahl zurücksetzen"
-      style="background-color: darkblue; border-color: darkblue"
+      style="background-color: #e30013; border-color: #e30013"
       :disabled="!selectedStudents || selectedStudents.length === 0"
       @click="deselectRows()"
     />
 
-    <Button icon="pi pi-plus" label="Neuer Eintrag" @click="create_visible = true" />
-    <Dialog v-model:visible="create_visible" modal header="Edit Profile" :style="{ width: '25rem' }">
+    <Button icon="pi pi-plus" style="background-color: #e30013; border-color: #e30013;" label="Neuer Eintrag" @click="create_visible = true" />
+    <Dialog v-model:visible="create_visible" modal header="Prüfling anlegen" :style="{ width: '25rem' }">
             
+      
             <div class="flex justify-end gap-2">
                 <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
                 <Button type="button" label="Save" @click="visible = false"></Button>
@@ -96,7 +131,13 @@ const visible = ref(false)
   </div>
 
   <div class="main-card">
+
+
     <div class="card">
+
+                  <Menu :model="items" class="p-menu" />
+
+
       <!-- Schülerliste -->
       <DataTable
         class="table"
@@ -114,7 +155,7 @@ const visible = ref(false)
         <Column field="work" header="Ausbildungsbetrieb"></Column>
         <Column style="width: 5%">
           <template #body="slotProps">
-            <Button icon="pi pi-pencil" style="color: white" @click="editStudent(slotProps.data.id)" />
+            <Button icon="pi pi-pencil" style="color: white; background-color: #e30013; border-color: #e30013" @click="editStudent(slotProps.data.id)" />
           </template>
         </Column>
         <Column style="width: 10%">

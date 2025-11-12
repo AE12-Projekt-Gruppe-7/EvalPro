@@ -7,9 +7,9 @@
 .p-datatable .p-datatable-scrollable-body table > tbody > tr.p-highlight > td,
 .p-datatable .p-datatable-scrollable-body table > tbody > tr[data-p-selected="true"] > td {
   background-image: none !important;
-  background-color: #363636 !important; /* your selected color */
+  background-color: #5f6062 !important;
   color: #ffffff !important;
-  border-color: #2e2e2e !important;
+  border-color: #5f6062 !important;
 }
 
 body {
@@ -28,6 +28,11 @@ body {
   background-color: white;
 }
 
+.p-menu {
+  background-color: #e30013;
+  width: 34%;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -41,6 +46,11 @@ body {
 }
 
 .main-card {
+}
+
+.card {
+  margin-top: 2rem;
+  display: flex;
 }
 
 .button-row {
@@ -68,8 +78,9 @@ body {
 }
 
 .table {
+  margin-left: 1rem;
   margin-top: 2rem;
-  width: full;
+  width: 100%;
   
 }
 
