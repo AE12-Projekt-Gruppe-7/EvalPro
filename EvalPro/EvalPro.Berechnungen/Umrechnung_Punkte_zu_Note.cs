@@ -6,7 +6,8 @@ namespace EvalPro.Berechnungen
     {
         public static double BerechneNote(int punkte)
         {
-            if (punkte == 100) return 1.0;
+            if (punkte < 0 || punkte > 100) return -1; // Ungültige Punktzahl
+            else if (punkte == 100) return 1.0;
             else if (punkte < 100 && punkte > 97) return 1.1;
             else if (punkte <= 97 && punkte > 95) return 1.2;
             else if (punkte <= 95 && punkte > 93) return 1.3;

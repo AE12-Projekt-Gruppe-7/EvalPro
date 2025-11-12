@@ -37,10 +37,10 @@ namespace Berechnung
             Console.WriteLine($"\nGesamtnote: {gesamtNote:F2}");
 
             // Bestehensregeln
-            bool bestanden = gesamtNote < 4.0 &&
-                            projektarbeit < 4.0 &&
-                            softwarePlanung < 4.0 &&
-                            Programmierung < 4.0;
+            bool bestanden = gesamtNote < 4.0 && gesamtNote > 0 &&
+                            projektarbeit < 4.0 && projektarbeit > 0 &&
+                            softwarePlanung < 4.0 && softwarePlanung > 0 &&
+                            Programmierung < 4.0 && Programmierung > 0;
 
             Console.WriteLine(bestanden ? "Prüfung bestanden" : "Prüfung nicht bestanden");
             Thread.Sleep(3000);
