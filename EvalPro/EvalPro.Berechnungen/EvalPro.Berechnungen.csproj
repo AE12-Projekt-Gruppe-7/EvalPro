@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EvalPro.Database\EvalPro.Database.csproj" />
+    <ProjectReference Include="..\EvalPro.Debug\EvalPro.Debug.csproj" />
   </ItemGroup>
 
 </Project>
