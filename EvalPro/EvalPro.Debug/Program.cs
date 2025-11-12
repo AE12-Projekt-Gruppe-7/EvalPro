@@ -1,4 +1,5 @@
 ﻿using EvalPro.Database.Entities;
+using EvalPro.Database.Interfaces.Repository;
 using EvalPro.Database.Repository;
 using Newtonsoft.Json;
 
@@ -12,6 +13,11 @@ internal class Program
         private static void Main()
         {
             System.IO.Directory.CreateDirectory("jsons");
-            _repo.Main();
+            var all= _repo.GetAll();
+            
+            foreach (var kriterium in all)
+            {
+                Console.WriteLine(kriterium);
+            }
         }
 }
