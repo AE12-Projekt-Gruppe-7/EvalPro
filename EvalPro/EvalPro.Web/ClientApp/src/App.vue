@@ -1,11 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import {KriteriumServie} from "@/Services/KriteriumServie.ts";
+
+const service = new KriteriumServie();
+
+async function getKriterium(){
+  await service.getKriteriums();
+}
+
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <Button @click="getKriterium">
+    Click Here
+  </Button>
 </template>
 
 <style scoped></style>
