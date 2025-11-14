@@ -7,10 +7,18 @@
 .p-datatable .p-datatable-scrollable-body table > tbody > tr.p-highlight > td,
 .p-datatable .p-datatable-scrollable-body table > tbody > tr[data-p-selected="true"] > td {
   background-image: none !important;
-  background-color: #5f6062 !important;
-  color: #ffffff !important;
-  border-color: #5f6062 !important;
+  background-color: #ececec !important;
+  color: black !important;
+  border-color: #ececec !important;
+  
 }
+
+.table {
+  margin-left: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
 
 body {
   font-family:
@@ -77,12 +85,7 @@ body {
   margin-top: 1rem;
 }
 
-.table {
-  margin-left: 1rem;
-  margin-top: 2rem;
-  width: 100%;
-  
-}
+
 
 .table .p-datatable-thead > tr > th,
 .table .p-datatable-tbody > tr > td {
