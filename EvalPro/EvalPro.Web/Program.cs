@@ -38,8 +38,6 @@ app.UseRouting();
 app.UseHttpsRedirection();
 
 app.MapControllers();
-//app.MapFallbackToFile("index.html");
-
 
 logger.Debug("Running App");
 await app.RunAsync();

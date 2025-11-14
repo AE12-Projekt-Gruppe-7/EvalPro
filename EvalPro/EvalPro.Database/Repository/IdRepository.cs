@@ -1,6 +1,5 @@
 ﻿using EvalPro.Database.Exceptions;
 using EvalPro.Database.Interfaces.Repository;
-
 namespace EvalPro.Database.Repository;
 
 public class IdRepository : IIdRepository
@@ -9,15 +8,20 @@ public class IdRepository : IIdRepository
     
     public int CreateNewId()
     {
-        var counter = _repo.Serializer.Deserialize<int?>(_repo.Reader);
-
-        if (counter == null)
-        {
-            throw new MissingDbException("Id could not be retrieved from Database, rebuilding Id Database.");
+        int? counter = null;
+        try
+        { 
+            counter = _repo.Serializer.Deserialize<int?>(_repo.Reader);
         }
-        
-        
-        return 0;
+        catch
+        {
+            Console.WriteLine("No ID Database found, restarting from 0");
+            _repo.Serializer.Serialize(_repo.Writer, 1);
+            return 0;
+        }
+
+        _repo.Serializer.Serialize(_repo.Writer, counter + 1);
+        return counter??0;
     }
 
     private bool RebuildIdCounter()
