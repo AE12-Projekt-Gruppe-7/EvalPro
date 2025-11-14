@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 namespace EvalPro.Web;
 
-[Controller]
+[ApiController]
+[Route("api/[controller]")]
 public class KriteriumController(IKriteriumRepository kriteriumRepository) : Controller
 {
     [HttpGet("")]

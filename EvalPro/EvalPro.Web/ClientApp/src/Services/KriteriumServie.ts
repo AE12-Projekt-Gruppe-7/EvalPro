@@ -7,7 +7,8 @@ export class KriteriumServie {
         const instance = axios.create({});
 
         const result = await instance
-            .get("/api/kriterium/getAllKriteriums").then(result => result.data);
+            .get("/api/kriterium/")
+            .then(result => result.data);
         console.log(result);
     }
 }

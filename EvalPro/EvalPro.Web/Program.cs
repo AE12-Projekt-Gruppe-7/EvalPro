@@ -1,33 +1,45 @@
-//Database Tracked Id Provider
-
 using EvalPro.Web.AppStart;
 using Serilog;
 using Serilog.Core;
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug().WriteTo.Console().CreateLogger();
 var logger = Log.Logger;
 
 logger.Debug("Starting web host");
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", false, true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+    .AddEnvironmentVariables()
+    .Build();
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//builder.Services.RegisterSerices(builder.Configuration);
+
+DependencyInjection.RegisterDependencies(builder.Services);
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 logger.Debug("Services Registered");
-DependencyInjection.RegisterDependencies(builder.Services);
 
 var app = builder.Build();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EvalPro"));
 }
+
+app.UseRouting();
 
 app.UseHttpsRedirection();
 
+app.MapControllers();
+//app.MapFallbackToFile("index.html");
+
+
 logger.Debug("Running App");
-app.Run();
+await app.RunAsync();

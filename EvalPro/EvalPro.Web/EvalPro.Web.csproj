@@ -17,4 +17,11 @@
       <ProjectReference Include="..\EvalPro.Database\EvalPro.Database.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="jsons\frage.json" />
+      <None Include="jsons\items.json" />
+      <None Include="jsons\kriterium.json" />
+      <None Include="jsons\model.json" />
+    </ItemGroup>
+
 </Project>
