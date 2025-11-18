@@ -8,7 +8,7 @@ public class IdRepository : IIdRepository
     
     public int CreateNewId()
     {
-        int? counter = null;
+        int? counter;
         try
         { 
             counter = _repo.Serializer.Deserialize<int?>(_repo.Reader);
@@ -20,12 +20,13 @@ public class IdRepository : IIdRepository
             return 0;
         }
 
-        _repo.Serializer.Serialize(_repo.Writer, counter + 1);
-        return counter??0;
-    }
+        if (counter != null)
+        {
+            _repo.Serializer.Serialize(_repo.Writer, ++counter);
+            return (int)counter;
+        }
 
-    private bool RebuildIdCounter()
-    {
-        return true;
+        _repo.Serializer.Serialize(_repo.Writer, 0);
+            return 0;
     }
 }

@@ -3,7 +3,7 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class FachgespraechRepository : IFachgespraechRepository
+public class FachgespraechRepository(IIdRepository _idRepository) : IFachgespraechRepository
 {
     private readonly BaseRepo _repo = new("fachgespraech.json");
 
@@ -34,13 +34,19 @@ public class FachgespraechRepository : IFachgespraechRepository
 
     public void Override(IEnumerable<Fachgespraech> fachgespraeche)
     {
+        foreach (var f in fachgespraeche)
+        {
+            var newId = _idRepository.CreateNewId();
+            f.Id = newId;
+        }
         _repo.Serializer.Serialize(_repo.Writer, fachgespraeche);
     }
 
     public void Add(Fachgespraech fachgespraech)
     {
         var all = GetAll().ToList();
-        
+        var newId = _idRepository.CreateNewId();
+        fachgespraech.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(fachgespraech));
     }
 

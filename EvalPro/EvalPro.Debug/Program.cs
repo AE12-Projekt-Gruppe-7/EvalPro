@@ -7,8 +7,8 @@ namespace EvalPro.Debug;
 
 internal class Program
 {
-
-    private static KriteriumRepository _repo = new ();
+    private static IdRepository _idRepository = new();
+    private static KriteriumRepository _repo = new(_idRepository);
     
         private static void Main()
         {

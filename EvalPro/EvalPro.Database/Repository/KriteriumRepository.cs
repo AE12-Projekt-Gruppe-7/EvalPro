@@ -3,7 +3,7 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class KriteriumRepository : IKriteriumRepository
+public class KriteriumRepository(IIdRepository _idRepository) : IKriteriumRepository
 {
     private readonly BaseRepo _repo = new("kriterium.json");
 
@@ -25,7 +25,8 @@ public class KriteriumRepository : IKriteriumRepository
     public void Add(Kriterium k)
     {
         var all = GetAll().ToList();
-        
+        var newId = _idRepository.CreateNewId();
+        k.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(k));
     }
 
@@ -50,6 +51,11 @@ public class KriteriumRepository : IKriteriumRepository
 
     public void Override(IEnumerable<Kriterium> ks)
     {
+        foreach (var f in ks)
+        {
+            var newId = _idRepository.CreateNewId();
+            f.Id = newId;
+        }
         _repo.Serializer.Serialize(_repo.Writer, ks);
     }
 }
