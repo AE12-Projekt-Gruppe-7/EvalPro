@@ -7,6 +7,7 @@ static class DependencyInjection
 {
     public static void RegisterDependencies(IServiceCollection services)
     {
+        services.AddSingleton<IIdRepository, IdRepository>();
         services.AddSingleton<IBewertungRepository, BewertungRepository>();
         services.AddSingleton<IFachgespraechRepository, FachgespraechRepository>();
         services.AddSingleton<IFrageRepository, FrageRepository>();

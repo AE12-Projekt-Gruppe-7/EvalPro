@@ -4,7 +4,9 @@ import axios from "axios";
 export class KriteriumServie {
     
     async getKriteriums(): Promise<void>{
-        const instance = axios.create({});
+        const instance = axios.create({
+            baseURL: "http://localhost:5000/",
+        });
 
         const result = await instance
             .get("/api/kriterium/")
