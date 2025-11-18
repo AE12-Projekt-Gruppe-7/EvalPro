@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "Name": "Max Mustermann",
+    "Vorname": "Max",
+    "Nachname": "Mustermann",
+    "Matrikelnummer": "MAT001"
+  },
+  {
+    "Id": 2,
+    "Name": "Anna Schmidt",
+    "Vorname": "Anna",
+    "Nachname": "Schmidt",
+    "Matrikelnummer": "MAT002"
+  },
+  {
+    "Id": 3,
+    "Name": "Peter Müller",
+    "Vorname": "Peter",
+    "Nachname": "Müller",
+    "Matrikelnummer": "MAT003"
+  },
+  {
+    "Id": 4,
+    "Name": "Julia Weber",
+    "Vorname": "Julia",
+    "Nachname": "Weber",
+    "Matrikelnummer": "MAT004"
+  },
+  {
+    "Id": 5,
+    "Name": "Lena Fischer",
+    "Vorname": "Lena",
+    "Nachname": "Fischer",
+    "Matrikelnummer": "MAT005"
+  }
+]

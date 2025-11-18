@@ -1,0 +1,27 @@
+[
+  {
+    "Kategorie": "Präsentation und Fachgespräch",
+    "Punkte": 75,
+    "Note": 2.8
+  },
+  {
+    "Kategorie": "Projektdokumentation",
+    "Punkte": 75,
+    "Note": 2.8
+  },
+  {
+    "Kategorie": "Planen eines Softwareprodukts",
+    "Punkte": 75,
+    "Note": 2.8
+  },
+  {
+    "Kategorie": "Anwendungsentwicklung",
+    "Punkte": 73,
+    "Note": 3.0
+  },
+  {
+    "Kategorie": "Projektarbeit (Doku+Präsi)",
+    "Punkte": 75,
+    "Note": 2.8
+  }
+]

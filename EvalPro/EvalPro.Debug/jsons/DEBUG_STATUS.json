@@ -1,0 +1,20 @@
+[
+  {
+    "File": "pruefling.json",
+    "Status": "✓ OK",
+    "Records": 5,
+    "Description": "5 Prüflinge mit IDs 1-5"
+  },
+  {
+    "File": "kriterium.json",
+    "Status": "✓ OK",
+    "Records": 8,
+    "Description": "8 Kriteriums mit IDs 1-8, korrekte Bezeichnungen und Punkte"
+  },
+  {
+    "File": "model.json",
+    "Status": "✓ OK",
+    "Records": 20,
+    "Description": "20 Bewertungen: 5 Prüflinge × 4 Kategorien, mit korrekten istPraesi/istDoku Flags"
+  }
+]

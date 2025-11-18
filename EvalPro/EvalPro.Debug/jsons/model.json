@@ -1,10 +1,170 @@
-{
-  "Id": 1,
-  "Name": "Item Name 1",
-  "ItemIds": [
-    1,
-    2,
-    3,
-    4
-  ]
-}
+[
+  {
+    "Id": 1,
+    "PrueflingId": 1,
+    "Name": "Max Mustermann - Präsentation",
+    "ItemIds": [1, 2],
+    "istPraesi": true,
+    "istDoku": false
+  },
+  {
+    "Id": 2,
+    "PrueflingId": 1,
+    "Name": "Max Mustermann - Projektdokumentation",
+    "ItemIds": [3, 4],
+    "istPraesi": false,
+    "istDoku": true
+  },
+  {
+    "Id": 3,
+    "PrueflingId": 1,
+    "Name": "Max Mustermann - Softwareplaning",
+    "ItemIds": [5, 6],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 4,
+    "PrueflingId": 1,
+    "Name": "Max Mustermann - Programmierung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 5,
+    "PrueflingId": 2,
+    "Name": "Anna Schmidt - Präsentation",
+    "ItemIds": [1, 2],
+    "istPraesi": true,
+    "istDoku": false
+  },
+  {
+    "Id": 6,
+    "PrueflingId": 2,
+    "Name": "Anna Schmidt - Projektdokumentation",
+    "ItemIds": [3, 4],
+    "istPraesi": false,
+    "istDoku": true
+  },
+  {
+    "Id": 7,
+    "PrueflingId": 2,
+    "Name": "Anna Schmidt - Softwareplaning",
+    "ItemIds": [5, 6],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 8,
+    "PrueflingId": 2,
+    "Name": "Anna Schmidt - Programmierung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 9,
+    "PrueflingId": 3,
+    "Name": "Peter Müller - Präsentation",
+    "ItemIds": [1, 2],
+    "istPraesi": true,
+    "istDoku": false
+  },
+  {
+    "Id": 10,
+    "PrueflingId": 3,
+    "Name": "Peter Müller - Projektdokumentation",
+    "ItemIds": [3, 4],
+    "istPraesi": false,
+    "istDoku": true
+  },
+  {
+    "Id": 11,
+    "PrueflingId": 3,
+    "Name": "Peter Müller - Softwareplaning",
+    "ItemIds": [5, 6],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 12,
+    "PrueflingId": 3,
+    "Name": "Peter Müller - Programmierung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 13,
+    "PrueflingId": 4,
+    "Name": "Julia Weber - Präsentation",
+    "ItemIds": [1, 2],
+    "istPraesi": true,
+    "istDoku": false
+  },
+  {
+    "Id": 14,
+    "PrueflingId": 4,
+    "Name": "Julia Weber - Projektdokumentation",
+    "ItemIds": [3, 4],
+    "istPraesi": false,
+    "istDoku": true
+  },
+  {
+    "Id": 15,
+    "PrueflingId": 4,
+    "Name": "Julia Weber - Softwareplaning",
+    "ItemIds": [5, 6],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 16,
+    "PrueflingId": 4,
+    "Name": "Julia Weber - Programmierung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 17,
+    "PrueflingId": 5,
+    "Name": "Lena Fischer - Präsentation",
+    "ItemIds": [1, 2],
+    "istPraesi": true,
+    "istDoku": false
+  },
+  {
+    "Id": 18,
+    "PrueflingId": 5,
+    "Name": "Lena Fischer - Projektdokumentation",
+    "ItemIds": [3, 4],
+    "istPraesi": false,
+    "istDoku": true
+  },
+  {
+    "Id": 19,
+    "PrueflingId": 5,
+    "Name": "Lena Fischer - Softwareplaning",
+    "ItemIds": [5, 6],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 20,
+    "PrueflingId": 5,
+    "Name": "Lena Fischer - Programmierung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  },
+  {
+    "Id": 21,
+    "PrueflingId": 5,
+    "Name": "Lena Fischer - Anwendungsentwicklung",
+    "ItemIds": [7, 8],
+    "istPraesi": false,
+    "istDoku": false
+  }
+]
