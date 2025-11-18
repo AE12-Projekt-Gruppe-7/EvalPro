@@ -10,8 +10,8 @@ namespace Berechnung
     class Berechnung
     {
         // ====== UMSCHALTUNG: Kommentiere eine der beiden Zeilen aus, um zwischen EvalPro.Debug und EvalPro.Database zu wechseln ======
-        private static readonly bool USE_DEBUG = true;    // true = EvalPro.Debug, false = EvalPro.Database
-        //private static readonly bool USE_DEBUG = false;
+        //private static readonly bool USE_DEBUG = true;    // true = EvalPro.Debug, false = EvalPro.Database
+        private static readonly bool USE_DEBUG = false;
 
         private static readonly string DebugPath = @"..\..\..\..\EvalPro.Debug\jsons";
 
@@ -53,7 +53,7 @@ namespace Berechnung
                 Console.WriteLine("Verfügbare Prüflinge werden geladen...\n");
                 
                 // Hole alle Bewertungen um verfügbare Prüflinge zu ermitteln
-                var alleBewertungen = bewertungRepo.GetAll().ToList();
+                var alleBewertungen = (bewertungRepo.GetAll() ?? System.Linq.Enumerable.Empty<Bewertung>()).ToList();
                 if (alleBewertungen == null || alleBewertungen.Count == 0)
                 {
                     Console.WriteLine("Keine Bewertungen in der Datenbank gefunden!");
@@ -81,7 +81,7 @@ namespace Berechnung
                 prueflingId = uniquePrueflinge[choice - 1].PrueflingId;
                 Console.WriteLine($"\n[Prüfling-ID: {prueflingId} ausgewählt]\n");
 
-                bewertungen = bewertungRepo.GetByPrueflingId(prueflingId).ToList();
+                bewertungen = (bewertungRepo.GetByPrueflingId(prueflingId) ?? System.Linq.Enumerable.Empty<Bewertung>()).ToList();
                 if (bewertungen == null || bewertungen.Count == 0)
                 {
                     Console.WriteLine($"Keine Bewertungen für Prüflings-ID {prueflingId} gefunden!");
@@ -132,24 +132,27 @@ namespace Berechnung
             Console.WriteLine(bestanden ? "Prüfung bestanden" : "Prüfung nicht bestanden");
 
             // Speichere berechnete Noten im Debug-Ordner (nur im Debug-Modus)
-            try
+            if (USE_DEBUG)
             {
-                var notes = new List<object>
+                try
                 {
-                    new { Kategorie = "Präsentation und Fachgespräch", Punkte = praesentationPunkte, Note = praesentation },
-                    new { Kategorie = "Projektdokumentation", Punkte = projektDokuPunkte, Note = projektDoku },
-                    new { Kategorie = "Planen eines Softwareprodukts", Punkte = softwarePlanungPunkte, Note = softwarePlanung },
-                    new { Kategorie = "Anwendungsentwicklung", Punkte = ProgrammierungPunkte, Note = Programmierung },
-                    new { Kategorie = "Projektarbeit (Doku+Präsi)", Punkte = (projektDokuPunkte + praesentationPunkte)/2, Note = projektarbeit }
-                };
+                    var notes = new List<object>
+                    {
+                        new { Kategorie = "Präsentation und Fachgespräch", Punkte = praesentationPunkte, Note = praesentation },
+                        new { Kategorie = "Projektdokumentation", Punkte = projektDokuPunkte, Note = projektDoku },
+                        new { Kategorie = "Planen eines Softwareprodukts", Punkte = softwarePlanungPunkte, Note = softwarePlanung },
+                        new { Kategorie = "Anwendungsentwicklung", Punkte = ProgrammierungPunkte, Note = Programmierung },
+                        new { Kategorie = "Projektarbeit (Doku+Präsi)", Punkte = (projektDokuPunkte + praesentationPunkte)/2, Note = projektarbeit }
+                    };
 
-                string outPath = Path.Combine(DebugPath, $"notes_pruefling_{prueflingId}.json");
-                File.WriteAllText(outPath, JsonConvert.SerializeObject(notes, Formatting.Indented));
-                Console.WriteLine($"Noten in {outPath} gespeichert.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fehler beim Speichern der Noten: {ex.Message}");
+                    string outPath = Path.Combine(DebugPath, $"notes_pruefling_{prueflingId}.json");
+                    File.WriteAllText(outPath, JsonConvert.SerializeObject(notes, Formatting.Indented));
+                    Console.WriteLine($"Noten in {outPath} gespeichert.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fehler beim Speichern der Noten: {ex.Message}");
+                }
             }
 
             Console.WriteLine("\nPress any key to exit...");
