@@ -3,7 +3,7 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class PruefungsausschussRepository : IPruefungsausschussRepository
+public class PruefungsausschussRepository(IIdRepository _idRepository) : IPruefungsausschussRepository
 {
     private readonly BaseRepo _repo = new("pruefungsausschuss.json");
 
@@ -20,7 +20,8 @@ public class PruefungsausschussRepository : IPruefungsausschussRepository
     public void Add(Pruefungsausschuss f)
     {
         var all = GetAll().ToList();
-        
+        var newId = _idRepository.CreateNewId();
+        f.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
     }
 
@@ -44,6 +45,11 @@ public class PruefungsausschussRepository : IPruefungsausschussRepository
 
     public void Override(IEnumerable<Pruefungsausschuss> fs)
     {
+        foreach (var f in fs)
+        {
+            var newId = _idRepository.CreateNewId();
+            f.Id = newId;
+        }
         _repo.Serializer.Serialize(_repo.Writer, fs);
     }
 }

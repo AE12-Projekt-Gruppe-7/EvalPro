@@ -3,7 +3,7 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class BewertungRepository : IBewertungRepository
+public class BewertungRepository(IIdRepository _idRepository) : IBewertungRepository
 {
     private readonly BaseRepo _repo = new("bewertung.json");
 
@@ -34,13 +34,19 @@ public class BewertungRepository : IBewertungRepository
 
     public void Override(IEnumerable<Bewertung> bewertungen)
     {
+        foreach (var f in bewertungen)
+        {
+            var newId = _idRepository.CreateNewId();
+            f.Id = newId;
+        }
         _repo.Serializer.Serialize(_repo.Writer, bewertungen);
     }
 
     public void Add(Bewertung bewertung)
     {
         var all = GetAll().ToList();
-
+        var newId = _idRepository.CreateNewId();
+        bewertung.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(bewertung));
     }
 
