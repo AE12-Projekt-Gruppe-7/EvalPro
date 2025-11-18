@@ -68,6 +68,12 @@ body {
   gap: 2%;
 }
 
+.checkbox-row {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
 .button-row button {
   width: 25%;
   color: white;
