@@ -1,5 +1,4 @@
-﻿using EvalPro.Database.Exceptions;
-using EvalPro.Database.Interfaces.Repository;
+﻿using EvalPro.Database.Interfaces.Repository;
 namespace EvalPro.Database.Repository;
 
 public class IdRepository : IIdRepository
