@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, reactive } from 'vue'
 
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
@@ -11,6 +11,8 @@ import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Button from 'primevue/button'
 import Dropdown from 'primevue/dropdown';
+import type { DropdownChangeEvent } from 'primevue/dropdown';
+import InputNumber from 'primevue/inputnumber';
 
 
 const name1 = ref('');
@@ -23,8 +25,13 @@ const visible = ref(false);
 const visible_edit = ref(false);
 const visible_rating = ref(false);
 
+type Question = {
+  name: string;
+  points: number;
+  comment: string;
+}
 
-type Option = 'option1' | 'option2';
+type Option = 'option1' | 'option2' | 'option3';
 
 const selected = ref<Option>('option1');
 
@@ -57,10 +64,24 @@ const option3Checked = computed({
   }
 });
 
-const selectedQuestion = ref();
+const selectedQuestion = reactive<Question>({
+  name: '',
+  points: 0,
+  comment: ''
+});
 const questions = ref([
-    { name: 'TESTFRAGE', points: '10', comment: 'blablabla' },
+    { name: 'TESTFRAGE', points: 10, comment: 'blablabla' },
 ]);
+
+function addQuestion() {
+  questions.value.push(selectedQuestion);
+}
+
+ function changeQSelection(event: DropdownChangeEvent) {
+  selectedQuestion.name = event.value.name;
+  selectedQuestion.points = event.value.points;
+  selectedQuestion.comment = event.value.comment;
+}
 
 onMounted(() => {
   students.value = [
@@ -242,27 +263,38 @@ const items = ref([
           
               <div class="field col-12">
                   <label for="firstname6">Alle Fragen</label>
-                  <Dropdown v-model="selectedQuestion" class="text-base surface-overlay w-full" :options="questions" optionLabel="name" placeholder="Frage auswählen" />
+                  <Dropdown @change="changeQSelection" class="text-base surface-overlay w-full" :options="questions" optionLabel="name" placeholder="Frage auswählen" />
 
               </div>
+
+              <div class="field col-12">
+                  <Button type="button" icon="pi pi-trash" class="mr-2" v-if="option3Checked"  style="background-color: #e30013; border-color:#e30013" @click="editQuestion()"></Button>
+                  <Button type="button" icon="pi pi-pencil"  v-if="option3Checked"  style="background-color: #e30013; border-color:#e30013" @click="deleteQuestion()"></Button>
+
+                </div>
+
               <div class="field col-12" >
                   <label for="firstname6">Frage</label>
-                  <InputText  class="text-base text-color surface-overlay p-2  border-round appearance-none  focus:border-primary w-full"/>
+                  <InputText v-model="selectedQuestion.name" class="text-base text-color surface-overlay p-2  border-round appearance-none  focus:border-primary w-full"/>
               </div>
               <div class="field col-12 md:col-2" >
                   <label for="lastname6">Punkte</label>
-                  <InputText  class="text-base text-color surface-overlay p-2  border-round appearance-none  focus:border-primary w-full"/>
-              </div>
+                  <InputNumber
+                      id="punkte"
+                      v-model="selectedQuestion.points"
+                      class="w-full"
+                      inputClass="w-full p-2 text-base text-color surface-overlay border-round appearance-none focus:border-primary"
+  />              </div>
                   <div class="field col-12 md:col-10">
                   <label for="company">Kommentar</label>
-                  <InputText id="company" type="text"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+                  <InputText v-model="selectedQuestion.comment" id="company" type="text"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
               </div>
 </div>
       
             <div class="flex justify-end gap-2" >
                 <Button type="button" label="Abbrechen" style="background-color: #e30013; border-color:#e30013" @click="visible = false"></Button>
                 <Button type="button" v-if="!option3Checked" :disabled="!name1 || !name2" label="Speichern" style="background-color: #e30013; border-color:#e30013" @click="visible = false; addStudent(name1, name2)"></Button>
-                <Button type="button" v-if="option3Checked"  label="Frage anlegen" style="background-color: #e30013; border-color:#e30013" @click="visible = false; addStudent(name1, name2)"></Button>
+                <Button type="button" v-if="option3Checked"  label="Neue Frage anlegen" style="background-color: #e30013; border-color:#e30013" @click="addQuestion"></Button>
             </div>
         </Dialog>
 
