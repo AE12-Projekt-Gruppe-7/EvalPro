@@ -30,7 +30,7 @@ export class ServiceBase {
         init(opts);
         const handleResponseDates = opts.handleResponseDates;
         this.lazyApiInstance = new LazyInstance<AxiosInstance>(() => {
-            const result = axios.create({baseURL: "http://localhost:5285/api/" + opts.endpoint,});
+            const result = axios.create({baseURL: "http://localhost:5001/api/" + opts.endpoint,});
             result.interceptors.response.use((resp) => {
                 if (handleResponseDates && resp.data && resp.status >= 200 && resp.status < 300) {
                     this.handleDates(resp.data);
