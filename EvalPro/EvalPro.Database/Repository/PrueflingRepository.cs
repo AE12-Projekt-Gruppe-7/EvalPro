@@ -22,12 +22,13 @@ public class PrueflingRepository(IIdRepository _idRepository) : IPrueflingReposi
         return (_repo.Serializer.Deserialize<List<Pruefling>>(_repo.Reader) ?? []).Where(x => x.AusschussId == aId);
     }
 
-    public void Add(Pruefling f)
+    public int Add(Pruefling f)
     {
         var all = GetAll().ToList();
         var newId = _idRepository.CreateNewId();
         f.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(f));
+        return newId;
     }
 
     public void Update(Pruefling f)

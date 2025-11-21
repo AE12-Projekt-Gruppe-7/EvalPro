@@ -8,7 +8,7 @@ public interface IPruefungsausschussRepository
     
     public Pruefungsausschuss? GetById(int id);
     
-    public void Add(Pruefungsausschuss f);
+    public int Add(Pruefungsausschuss f);
     
     public void Update(Pruefungsausschuss f);
     

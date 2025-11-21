@@ -22,12 +22,13 @@ public class FrageRepository(IIdRepository _idRepository) : IFrageRepository
         return (_repo.Serializer.Deserialize<List<Frage>>(_repo.Reader) ?? []).Where(x => x.GespraechId == gespraechId);
     }
 
-    public void Add(Frage f)
+    public int Add(Frage f)
     {
         var all = GetAll().ToList();
         var newId = _idRepository.CreateNewId();
         f.Id = newId;
-        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
+        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));
+        return newId;
     }
 
     public void Update(Frage f)

@@ -10,7 +10,7 @@ public interface IKriteriumRepository
     
     public IEnumerable<Kriterium> GetByBewertungId(int bId);
     
-    public void Add(Kriterium k);
+    public int Add(Kriterium k);
     
     public void Update(Kriterium k);
     

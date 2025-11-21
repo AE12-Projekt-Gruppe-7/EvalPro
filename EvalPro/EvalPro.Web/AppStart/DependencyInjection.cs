@@ -5,7 +5,7 @@ namespace EvalPro.Web.AppStart;
 
 static class DependencyInjection
 {
-    public static void RegisterDependencies(IServiceCollection services)
+    public static void RegisterServices(IServiceCollection services)
     {
         services.AddSingleton<IIdRepository, IdRepository>();
         services.AddSingleton<IBewertungRepository, BewertungRepository>();

@@ -10,7 +10,7 @@ public interface IFrageRepository
     
     public IEnumerable<Frage> GetByGespraechId(int gespraechId);
     
-    public void Add(Frage f);
+    public int Add(Frage f);
     
     public void Update(Frage f);
     
