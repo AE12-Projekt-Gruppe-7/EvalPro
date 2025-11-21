@@ -8,16 +8,16 @@ public class BaseRepo
     private readonly JsonSerializerSettings _settings = new JsonSerializerSettings();
     public readonly JsonSerializer Serializer;
     public readonly JsonReader Reader;
-    public readonly FileStream str;
+    public readonly FileStream Str;
 
     public BaseRepo(string path)
     {
-        str = new FileStream("./jsons/" + path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
-        var sw = new StreamWriter(str);
+        Str = new FileStream("./jsons/" + path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+        var sw = new StreamWriter(Str);
         sw.AutoFlush = true;
         Writer = new JsonTextWriter(sw);
         
-        var sr = new StreamReader(str);
+        var sr = new StreamReader(Str);
         Reader = new JsonTextReader(sr);
         
         _settings.Formatting = Formatting.Indented;

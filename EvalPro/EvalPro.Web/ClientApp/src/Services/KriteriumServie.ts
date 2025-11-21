@@ -1,15 +1,16 @@
 ﻿import type {Kriterium} from "@/models/kriterium.ts";
 import axios from "axios";
+import { ServiceBase, type ServiceOptions } from "./ServiceBase.ts"
 
-export class KriteriumServie {
+export default class KriteriumService extends ServiceBase {
+    constructor() {         
+        super((opts: ServiceOptions) => {
+            opts.endpoint = "kriterium";        
+        });     }
     
     async getKriteriums(): Promise<void>{
-        const instance = axios.create({
-            baseURL: "http://localhost:5000/",
-        });
-
-        const result = await instance
-            .get("/api/kriterium/")
+        const result = await super.api()
+            .get("/")
             .then(result => result.data);
         console.log(result);
     }

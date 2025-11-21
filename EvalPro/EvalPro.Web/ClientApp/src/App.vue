@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
-import {KriteriumServie} from "@/Services/KriteriumServie.ts";
+import KriteriumService from "@/Services/KriteriumServie.ts";
 
-const service = new KriteriumServie();
+const service = new KriteriumService();
 
 async function getKriterium(){
   await service.getKriteriums();

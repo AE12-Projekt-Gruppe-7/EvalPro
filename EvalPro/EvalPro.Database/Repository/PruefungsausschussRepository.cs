@@ -17,12 +17,13 @@ public class PruefungsausschussRepository(IIdRepository _idRepository) : IPruefu
         return (_repo.Serializer.Deserialize<IEnumerable<Pruefungsausschuss>>(_repo.Reader) ?? []).FirstOrDefault(x => x.Id == id);
     }
 
-    public void Add(Pruefungsausschuss f)
+    public int Add(Pruefungsausschuss f)
     {
         var all = GetAll().ToList();
         var newId = _idRepository.CreateNewId();
         f.Id = newId;
-        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
+        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));
+        return newId;
     }
 
     public void Update(Pruefungsausschuss f)

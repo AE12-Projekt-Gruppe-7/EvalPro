@@ -22,12 +22,13 @@ public class KriteriumRepository(IIdRepository _idRepository) : IKriteriumReposi
         return (_repo.Serializer.Deserialize<List<Kriterium>>(_repo.Reader) ?? []).Where(x => x.BewertungId == bId);
     }
 
-    public void Add(Kriterium k)
+    public int Add(Kriterium k)
     {
         var all = GetAll().ToList();
         var newId = _idRepository.CreateNewId();
         k.Id = newId;
         _repo.Serializer.Serialize(_repo.Writer, all.Append(k));
+        return newId;
     }
 
     public void Update(Kriterium k)
