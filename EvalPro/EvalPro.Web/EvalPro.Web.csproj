@@ -8,11 +8,20 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.20"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\EvalPro.Database\EvalPro.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="jsons\frage.json" />
+      <None Include="jsons\items.json" />
+      <None Include="jsons\kriterium.json" />
+      <None Include="jsons\model.json" />
     </ItemGroup>
 
 </Project>

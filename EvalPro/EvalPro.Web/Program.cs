@@ -1,50 +1,59 @@
-//Database Tracked Id Provider
-
+using System.Text.Json.Serialization;
 using EvalPro.Web.AppStart;
+using Microsoft.OpenApi;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-DependencyInjection.RegisterDependencies(builder.Services);
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+const string corsPolicy = "_allowedOrigins";
+#pragma warning disable S2221 
+try
 {
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Configuration.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true)
+        .AddJsonFile(
+            $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", false,
+            true).AddEnvironmentVariables().Build();
+    DependencyInjection.RegisterServices(builder.Services);
+    builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen(options =>
+        options.MapType<DateOnly>(() => new OpenApiSchema { Type = JsonSchemaType.String, Format = "date" }));
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(corsPolicy,
+            policyBuilder =>
+            {
+                policyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            });
+    });
+    var app = builder.Build();
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseCors(corsPolicy);
+    }
+    else
+    {
+        app.UseHsts();
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
+    }
+
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHttpsRedirection();
+    app.UseRouting();
+    app.MapControllers();
+    app.MapFallbackToFile("index.html");
+    await app.RunAsync();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception e)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    Log.Fatal(e, "Host terminated unexpectedly: {ErrorMessage}", e.Message);
+}
+finally
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    await Log.CloseAndFlushAsync();
 }

@@ -10,7 +10,7 @@ public interface IPrueflingRepository
     
     public IEnumerable<Pruefling> GetByAusschussId(int aId);
     
-    public void Add(Pruefling f);
+    public int Add(Pruefling f);
     
     public void Update(Pruefling f);
     

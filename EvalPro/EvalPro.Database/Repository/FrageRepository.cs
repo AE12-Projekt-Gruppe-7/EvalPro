@@ -3,7 +3,7 @@ using EvalPro.Database.Interfaces.Repository;
 
 namespace EvalPro.Database.Repository;
 
-public class FrageRepository : IFrageRepository
+public class FrageRepository(IIdRepository _idRepository) : IFrageRepository
 {
     private readonly BaseRepo _repo = new("frage.json");
     
@@ -22,11 +22,13 @@ public class FrageRepository : IFrageRepository
         return (_repo.Serializer.Deserialize<List<Frage>>(_repo.Reader) ?? []).Where(x => x.GespraechId == gespraechId);
     }
 
-    public void Add(Frage f)
+    public int Add(Frage f)
     {
         var all = GetAll().ToList();
-        
-        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));    
+        var newId = _idRepository.CreateNewId();
+        f.Id = newId;
+        _repo.Serializer.Serialize(_repo.Writer, all.Append(f));
+        return newId;
     }
 
     public void Update(Frage f)
@@ -49,6 +51,11 @@ public class FrageRepository : IFrageRepository
 
     public void Override(IEnumerable<Frage> fs)
     {
+        foreach (var f in fs)
+        {
+            var newId = _idRepository.CreateNewId();
+            f.Id = newId;
+        }
         _repo.Serializer.Serialize(_repo.Writer, fs);
     }
 }

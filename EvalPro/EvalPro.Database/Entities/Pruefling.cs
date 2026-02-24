@@ -19,5 +19,7 @@ public class Pruefling
     public int PraesiBewertungsId { get; set; }
 
     public int FachgesprächId { get; set; }
+    
+    public DateOnly PruefungsDatum { get; set; }
 
 }

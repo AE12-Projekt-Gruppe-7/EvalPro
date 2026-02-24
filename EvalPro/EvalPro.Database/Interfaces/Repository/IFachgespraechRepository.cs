@@ -14,7 +14,7 @@ public interface IFachgespraechRepository
     
     public void Override(IEnumerable<Fachgespraech> fachgespraeche);
     
-    public void Add(Fachgespraech fachgespraech);
+    public int Add(Fachgespraech fachgespraech);
     
     public void Delete(int id);
 

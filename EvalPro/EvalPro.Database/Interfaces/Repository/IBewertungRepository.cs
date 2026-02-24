@@ -14,7 +14,7 @@ public interface IBewertungRepository
     
     public void Override(IEnumerable<Bewertung> bewertungen);
     
-    public void Add(Bewertung bewertung);
+    public int Add(Bewertung bewertung);
     
     public void Delete(int id);
     
