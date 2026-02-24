@@ -1,4 +1,6 @@
-﻿namespace EvalPro.Database.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EvalPro.Database.Entities;
 
 public class Bewertung
 {
@@ -6,6 +8,9 @@ public class Bewertung
     
     public int PrueflingId { get; set; }
     
+    public Pruefling? Pruefling { get; set; }
+    
+    [MaxLength(255)]
     public string Gesammtkommentar { get; set; }
     
     public IEnumerable<int> KriterienIds { get; set; }

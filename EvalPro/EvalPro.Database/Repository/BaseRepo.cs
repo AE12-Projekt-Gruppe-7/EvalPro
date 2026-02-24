@@ -5,7 +5,7 @@ namespace EvalPro.Database.Repository;
 public class BaseRepo
 {
     public readonly JsonWriter Writer;
-    private readonly JsonSerializerSettings _settings = new JsonSerializerSettings();
+    private readonly JsonSerializerSettings _settings = new ();
     public readonly JsonSerializer Serializer;
     public readonly JsonReader Reader;
     public readonly FileStream Str;
