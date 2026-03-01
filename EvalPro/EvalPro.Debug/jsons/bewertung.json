@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "prueflingId": 2,
+    "gesammtkommentar": "Test 1",
+    "isPraesi": false,
+    "isDoku": true,
+    "kriterienIds": [1,3,76,9]
+  },
+  {
+    "Id": 13563,
+    "PrueflingId": 2,
+    "Gesammtkommentar": "Test 1",
+    "isPraesi": true,
+    "isDoku": false,
+    "kriterienIds": [1,5,7,19]
+  },
+  {
+    "Id": 135783657,
+    "PrueflingId": 2357837,
+    "Gesammtkommentar": "3578378 1",
+    "isPraesi": false,
+    "isDoku": true,
+    "kriterienIds": [4,56]
+  },
+  {
+    "Id": 125432525,
+    "PrueflingId": 2,
+    "Gesammtkommentar": "Test 1",
+    "isPraesi": false,
+    "isDoku": true,
+    "kriterienIds": [7,36,333]
+  },
+  {
+    "Id": 7678854,
+    "PrueflingId": 2,
+    "Gesammtkommentar": "3425 1",
+    "isPraesi": true,
+    "isDoku": false,
+    "kriterienIds": [1,98,80,674]
+  }
+]
