@@ -1,5 +1,7 @@
 using EvalPro.Database.Interfaces.Repository;
+using EvalPro.Database.Interfaces.Services;
 using EvalPro.Database.Repository;
+using EvalPro.Database.Services;
 
 namespace EvalPro.Web.AppStart;
 
@@ -14,5 +16,7 @@ static class DependencyInjection
         services.AddSingleton<IKriteriumRepository, KriteriumRepository>();
         services.AddSingleton<IPrueflingRepository, PrueflingRepository>();
         services.AddSingleton<IPruefungsausschussRepository,PruefungsausschussRepository>();
+        
+        services.AddScoped<IBewertungenService, BewertungenService>();
     }
 }

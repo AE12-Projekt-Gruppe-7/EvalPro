@@ -14,7 +14,6 @@ public class IdRepository : IIdRepository
         }
         catch
         {
-            Console.WriteLine("No ID Database found, restarting from 0");
             _repo.Serializer.Serialize(_repo.Writer, 1);
             return 0;
         }
